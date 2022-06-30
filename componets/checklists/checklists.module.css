@@ -1,0 +1,4 @@
+.checklists {
+  display: flex;
+  flex-wrap: wrap;
+}

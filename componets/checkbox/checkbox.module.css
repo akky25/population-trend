@@ -1,0 +1,11 @@
+@media (max-width: 600px) {
+  .checkbox {
+    min-width: 33%;
+  }
+}
+@media (min-width: 601px) {
+  .checkbox {
+    min-width: 7em;
+    height: 2em;
+  }
+}
