@@ -7,10 +7,13 @@ export const Checklists = ({ data }: { data: PrefecturesResponse }) => {
   const [checklists, onChange] = useChecklists(data);
 
   return (
-    <div className={styles.checklists}>
-      {checklists.map((c) => {
-        return <Checkbox key={c.id} onChange={onChange} {...c}></Checkbox>;
-      })}
-    </div>
+    <>
+      <div className={styles.title}>都道府県</div>
+      <div className={styles.checklists}>
+        {checklists.map((c) => {
+          return <Checkbox key={c.id} onChange={onChange} {...c}></Checkbox>;
+        })}
+      </div>
+    </>
   );
 };

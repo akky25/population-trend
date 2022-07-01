@@ -14,7 +14,7 @@ const Home = ({ data }: { data: PrefecturesResponse }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <Checklists data={data} />
       </main>
     </div>
