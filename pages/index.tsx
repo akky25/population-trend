@@ -4,6 +4,7 @@ import styles from "styles/Home.module.css";
 import { Checklists } from "componets/checklists/checklists";
 import { getPrefectures } from "libs/get-prefectures";
 import { PrefecturesResponse } from "model/prefectures";
+import { ArtificialTransitiveGraph } from "componets/artificial-transitive-graph/artificial-transitive-graph";
 
 const Home = ({ data }: { data: PrefecturesResponse }) => {
   return (
@@ -14,8 +15,10 @@ const Home = ({ data }: { data: PrefecturesResponse }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* <main className={styles.main}> */}
       <main>
         <Checklists data={data} />
+        <ArtificialTransitiveGraph />
       </main>
     </div>
   );
