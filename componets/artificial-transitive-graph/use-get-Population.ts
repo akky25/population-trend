@@ -69,6 +69,7 @@ export const useSetDrawingData = () => {
   const appState = useAppState();
 
   // GlobalStateから全都道県コードを取得
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const allPref = useMemo(() => appState.map((s) => s.id), []);
 
   // GlobalStateから描画対象の都道府県コードを取得
@@ -77,8 +78,10 @@ export const useSetDrawingData = () => {
     [appState]
   );
 
+  // 人口データの取得
   useEffect(() => {
     generateDrawingData(allPref).then((d) => setData(d));
   }, [allPref]);
+
   return [data, targetPref] as const;
 };

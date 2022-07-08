@@ -9,7 +9,6 @@ import {
   Line,
   ResponsiveContainer,
   ReferenceLine,
-  LabelList,
 } from "recharts";
 import style from "./artificial-transitive-graph.module.css";
 import { useSetDrawingData } from "./use-get-Population";
@@ -19,6 +18,10 @@ export const ArtificialTransitiveGraph = () => {
 
   if (!data) {
     return <>Loading...</>;
+  }
+
+  if (targetPref.length === 0) {
+    return <></>;
   }
 
   return (
@@ -40,11 +43,12 @@ export const ArtificialTransitiveGraph = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <ReferenceLine x="2015" stroke="green" label="Min PAGE" />
+          <ReferenceLine x="2015" stroke="green" label="実績・予測値境界" />
           {targetPref.map((prefecture) => {
             return (
               <Line
                 key={prefecture.id}
+                id={prefecture.id}
                 type="monotone"
                 dataKey={prefecture.id}
                 stroke="#8884d8"
