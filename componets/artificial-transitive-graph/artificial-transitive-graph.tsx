@@ -13,17 +13,15 @@ import {
 import style from "./artificial-transitive-graph.module.css";
 import { useSetDrawingData } from "./use-get-Population";
 
-export const ArtificialTransitiveGraph = (props: {
-  getAllPrefCode: string[];
-}) => {
-  const [data, targetPref] = useSetDrawingData(props.getAllPrefCode);
+export const ArtificialTransitiveGraph = (props: { allPrefCode: string[] }) => {
+  const [data, targetPref] = useSetDrawingData(props.allPrefCode);
 
   if (!data) {
     return <>Loading...</>;
   }
 
   if (targetPref.length === 0) {
-    return <></>;
+    return <p>表示したい都道府県を選択してください</p>;
   }
 
   return (
