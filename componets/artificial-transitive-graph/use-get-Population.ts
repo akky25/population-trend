@@ -64,13 +64,9 @@ const targetPrefReducer = (
   return p;
 };
 
-export const useSetDrawingData = () => {
+export const useSetDrawingData = (getAllPrefCode: string[]) => {
   const [data, setData] = useState<DrawingData>();
   const appState = useAppState();
-
-  // GlobalStateから全都道県コードを取得
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const allPref = useMemo(() => appState.map((s) => s.id), []);
 
   // GlobalStateから描画対象の都道府県コードを取得
   const targetPref = useMemo(
@@ -80,8 +76,8 @@ export const useSetDrawingData = () => {
 
   // 人口データの取得
   useEffect(() => {
-    generateDrawingData(allPref).then((d) => setData(d));
-  }, [allPref]);
+    generateDrawingData(getAllPrefCode).then((d) => setData(d));
+  }, [getAllPrefCode]);
 
   return [data, targetPref] as const;
 };

@@ -6,7 +6,7 @@ import { getPrefectures } from "libs/get-prefectures";
 import { PrefecturesResponse } from "model/prefectures";
 import { ArtificialTransitiveGraph } from "componets/artificial-transitive-graph/artificial-transitive-graph";
 import { AppStateProvider } from "libs/state/AppState";
-import { convertResponseToState } from "libs/convert";
+import { convertResponseToState, getAllPrefCode } from "libs/convert";
 
 const Home = ({ data }: { data: PrefecturesResponse }) => {
   return (
@@ -21,7 +21,7 @@ const Home = ({ data }: { data: PrefecturesResponse }) => {
         {/* <main className={styles.main}> */}
         <main>
           <Checklists />
-          <ArtificialTransitiveGraph />
+          <ArtificialTransitiveGraph allPrefCode={getAllPrefCode(data)} />
         </main>
       </div>
     </AppStateProvider>
