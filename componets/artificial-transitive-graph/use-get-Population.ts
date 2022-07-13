@@ -1,5 +1,5 @@
 import { fetchAllPopulationCompositionPeryear } from "libs/get-population-composition";
-import { AppState, useAppState } from "libs/state/AppState";
+import { useAppState } from "libs/state/AppState";
 import { useState, useEffect, useMemo } from "react";
 
 type DrawingData = {
@@ -49,35 +49,18 @@ const generateDrawingData = async (prefCodes: string[]) => {
   return drawingData;
 };
 
-//
-const targetPrefReducer = (
-  p: AppState,
-  c: {
-    id: string;
-    checked: boolean;
-    label: string;
-  }
-) => {
-  if (c.checked) {
-    p.push(c);
-  }
-  return p;
-};
-
 export const useSetDrawingData = (getAllPrefCode: string[]) => {
   const [data, setData] = useState<DrawingData>();
   const appState = useAppState();
 
-  // GlobalStateから描画対象の都道府県コードを取得
-  const targetPref = useMemo(
-    () => appState.reduce(targetPrefReducer, []),
-    [appState]
-  );
+  const hasDrawingTarget = useMemo(() => {
+    return appState.findIndex((s) => s.checked) !== -1;
+  }, [appState]);
 
   // 人口データの取得
   useEffect(() => {
     generateDrawingData(getAllPrefCode).then((d) => setData(d));
   }, [getAllPrefCode]);
 
-  return [data, targetPref] as const;
+  return { data, appState, hasDrawingTarget } as const;
 };
