@@ -1,0 +1,31 @@
+.form {
+  /* display: table; */
+  display: inline-flex; /* 要素をインライン用のflexコンテナとして定義する */
+  justify-content: center; /* flexアイテムの上下中央を指定する */
+  align-items: center;
+  width: 350px; /* flex コンテナの横幅を指定する */
+  /* height: 300px; flex コンテナの高さを指定する */
+  /* border: 2px solid #006dd9; flex コンテナの境界線を実線で指定する */
+  flex-flow: column;
+}
+
+.input {
+  /* display: table-cell; */
+  width: 320px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.input_button {
+  /* display: table-cell; */
+  width: 100px;
+}
+
+.message {
+  margin: 15px 15px 0px 15px;
+}
+
+.error_message {
+  color: red;
+  width: 320px;
+}
