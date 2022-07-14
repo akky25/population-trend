@@ -1,0 +1,12 @@
+@media (max-width: 600px) {
+  .main {
+    margin-top: 1rem;
+    height: auto;
+  }
+}
+@media (min-width: 601px) {
+  .main {
+    margin-top: 1rem;
+    height: 70vh;
+  }
+}
