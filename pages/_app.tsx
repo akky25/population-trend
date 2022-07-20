@@ -1,5 +1,8 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { initMocks } from "mocks";
+
+initMocks();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
