@@ -7,7 +7,9 @@ export const initMocks = () => {
     } else {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { worker } = require("./browser");
-      worker.start();
+      worker.start({
+        onUnhandledRequest: "bypass",
+      });
     }
   }
 };
