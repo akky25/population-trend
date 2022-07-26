@@ -54,16 +54,15 @@ export const useSetDrawingData = () => {
   const [data, setData] = useState<DrawingData>();
   const appState = useAppState();
 
-  const allPrefCode = getAllPrefCode(appState);
-
   const hasDrawingTarget = useMemo(() => {
     return appState.findIndex((s) => s.checked) !== -1;
   }, [appState]);
 
   // 人口データの取得
   useEffect(() => {
+    const allPrefCode = getAllPrefCode(appState);
     generateDrawingData(allPrefCode).then((d) => setData(d));
-  }, [allPrefCode]);
+  }, [appState]);
 
   return { data, appState, hasDrawingTarget } as const;
 };
