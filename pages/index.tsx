@@ -1,17 +1,13 @@
-import type { GetStaticProps } from "next";
 import Head from "next/head";
 import styles from "styles/Home.module.css";
-import { getPrefectures } from "libs/get-prefectures";
-import { PrefecturesResponse } from "model/prefectures";
 import { AppStateProvider } from "libs/state/AppState";
-import { convertResponseToState } from "libs/convert";
 import { ApiKeyFormModal } from "componets/modal/ApiKeyFormModal";
 import { ApiKeyStateProvider } from "libs/state/ApiKeyState";
-import { Main } from "componets/main";
+import { Main } from "componets/Main/main";
 
-const Home = ({ data }: { data: PrefecturesResponse }) => {
+const Home = () => {
   return (
-    <AppStateProvider initialState={convertResponseToState(data)}>
+    <AppStateProvider>
       <ApiKeyStateProvider>
         <div className={styles.container}>
           <Head>
@@ -29,13 +25,13 @@ const Home = ({ data }: { data: PrefecturesResponse }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await getPrefectures();
-  return {
-    props: {
-      data: data as PrefecturesResponse,
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//   const data = await getPrefectures();
+//   return {
+//     props: {
+//       data: data as PrefecturesResponse,
+//     },
+//   };
+// };
 
 export default Home;

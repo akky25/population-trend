@@ -13,9 +13,9 @@ import style from "./artificial-transitive-graph.module.css";
 import { useSetDrawingData } from "./use-get-Population";
 
 export const ArtificialTransitiveGraph = () => {
-  const { data, appState, hasDrawingTarget } = useSetDrawingData();
+  const { drawingData, appState, hasDrawingTarget } = useSetDrawingData();
 
-  if (!data) {
+  if (!drawingData) {
     return <>Loading...</>;
   }
 
@@ -30,7 +30,7 @@ export const ArtificialTransitiveGraph = () => {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={drawingData}
           margin={{
             top: 5,
             right: 30,
