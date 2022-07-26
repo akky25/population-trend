@@ -1,14 +1,13 @@
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import styles from "styles/Home.module.css";
-import { Checklists } from "componets/checklists/checklists";
 import { getPrefectures } from "libs/get-prefectures";
 import { PrefecturesResponse } from "model/prefectures";
-import { ArtificialTransitiveGraph } from "componets/artificial-transitive-graph/artificial-transitive-graph";
 import { AppStateProvider } from "libs/state/AppState";
-import { convertResponseToState, getAllPrefCode } from "libs/convert";
+import { convertResponseToState } from "libs/convert";
 import { ApiKeyFormModal } from "componets/modal/ApiKeyFormModal";
 import { ApiKeyStateProvider } from "libs/state/ApiKeyState";
+import { Main } from "componets/main";
 
 const Home = ({ data }: { data: PrefecturesResponse }) => {
   return (
@@ -22,10 +21,7 @@ const Home = ({ data }: { data: PrefecturesResponse }) => {
           </Head>
 
           {/* <main className={styles.main}> */}
-          <main>
-            <Checklists />
-            <ArtificialTransitiveGraph allPrefCode={getAllPrefCode(data)} />
-          </main>
+          <Main />
         </div>
         <ApiKeyFormModal />
       </ApiKeyStateProvider>

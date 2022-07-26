@@ -7,7 +7,7 @@ import { AppState } from "./state/AppState";
  * @returns チェックボックスのステート
  */
 export const convertResponseToState = (data: PrefecturesResponse): AppState => {
-  return data.result.map((d, i) => {
+  return data.result.map((d) => {
     return {
       id: d.prefCode.toString(),
       checked: false,
@@ -22,6 +22,6 @@ export const convertResponseToState = (data: PrefecturesResponse): AppState => {
  * @param data APIレスポンスの都道府県
  * @returns 全都道県コード(stringに変換)
  */
-export const getAllPrefCode = (data: PrefecturesResponse) => {
-  return data.result.map((r) => r.prefCode.toString());
+export const getAllPrefCode = (data: AppState) => {
+  return data.map((r) => r.id.toString());
 };

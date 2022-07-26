@@ -12,10 +12,8 @@ import {
 import style from "./artificial-transitive-graph.module.css";
 import { useSetDrawingData } from "./use-get-Population";
 
-export const ArtificialTransitiveGraph = (props: { allPrefCode: string[] }) => {
-  const { data, appState, hasDrawingTarget } = useSetDrawingData(
-    props.allPrefCode
-  );
+export const ArtificialTransitiveGraph = () => {
+  const { data, appState, hasDrawingTarget } = useSetDrawingData();
 
   if (!data) {
     return <>Loading...</>;
