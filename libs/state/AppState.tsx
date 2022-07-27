@@ -16,10 +16,11 @@ export type AppState = {
 }[];
 
 export type Action = {
-  type: "Toggle" | "Clear" | "AllCheck";
+  type: "Init" | "Toggle" | "Clear" | "AllCheck";
   prefCode?: string;
   color?: string;
   colors?: string[];
+  prefectures?: AppState;
 };
 
 // Contextの生成
@@ -36,6 +37,8 @@ const reducer: Reducer<AppState, Action> = (
 ) => {
   const tmpColors = action.colors ? [...action.colors] : [];
   switch (action.type) {
+    case "Init":
+      return [...(action.prefectures as AppState)];
     case "Toggle":
       // 対象の要素のcheckedを反転させる
       return state.map((c) =>
@@ -73,11 +76,8 @@ const reducer: Reducer<AppState, Action> = (
 export const useAppState = () => useContext(AppStateContext);
 export const useDispachAppStateContext = () => useContext(SetAppStateContext);
 
-export const AppStateProvider = (props: {
-  initialState: AppState;
-  children: ReactNode;
-}) => {
-  const [state, dispatch] = useReducer(reducer, props.initialState);
+export const AppStateProvider = (props: { children: ReactNode }) => {
+  const [state, dispatch] = useReducer(reducer, []);
   return (
     <AppStateContext.Provider value={state}>
       <SetAppStateContext.Provider value={dispatch}>

@@ -12,12 +12,10 @@ import {
 import style from "./artificial-transitive-graph.module.css";
 import { useSetDrawingData } from "./use-get-Population";
 
-export const ArtificialTransitiveGraph = (props: { allPrefCode: string[] }) => {
-  const { data, appState, hasDrawingTarget } = useSetDrawingData(
-    props.allPrefCode
-  );
+export const ArtificialTransitiveGraph = () => {
+  const { drawingData, appState, hasDrawingTarget } = useSetDrawingData();
 
-  if (!data) {
+  if (!drawingData) {
     return <>Loading...</>;
   }
 
@@ -32,7 +30,7 @@ export const ArtificialTransitiveGraph = (props: { allPrefCode: string[] }) => {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={drawingData}
           margin={{
             top: 5,
             right: 30,

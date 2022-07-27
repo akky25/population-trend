@@ -1,4 +1,6 @@
+import { getAllPrefCode } from "libs/convert";
 import { fetchAllPopulationCompositionPeryear } from "libs/get-population-composition";
+import { useFetchPrefectures } from "libs/get-prefectures";
 import { useAppState } from "libs/state/AppState";
 import { useState, useEffect, useMemo } from "react";
 
@@ -49,9 +51,10 @@ const generateDrawingData = async (prefCodes: string[]) => {
   return drawingData;
 };
 
-export const useSetDrawingData = (getAllPrefCode: string[]) => {
-  const [data, setData] = useState<DrawingData>();
+export const useSetDrawingData = () => {
+  const [drawingData, setDrawingData] = useState<DrawingData>();
   const appState = useAppState();
+  const { data: prefectures } = useFetchPrefectures();
 
   const hasDrawingTarget = useMemo(() => {
     return appState.findIndex((s) => s.checked) !== -1;
@@ -59,8 +62,11 @@ export const useSetDrawingData = (getAllPrefCode: string[]) => {
 
   // 人口データの取得
   useEffect(() => {
-    generateDrawingData(getAllPrefCode).then((d) => setData(d));
-  }, [getAllPrefCode]);
+    if (prefectures) {
+      const allPrefCode = getAllPrefCode(prefectures);
+      generateDrawingData(allPrefCode).then((d) => setDrawingData(d));
+    }
+  }, [prefectures]);
 
-  return { data, appState, hasDrawingTarget } as const;
+  return { drawingData, appState, hasDrawingTarget } as const;
 };
